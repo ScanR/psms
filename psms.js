@@ -2,12 +2,12 @@ const { getMangaViewerHash } = require("./getMangaViewerHash.js");
 const Canvas = require("@napi-rs/canvas");
 const { parseStringPromise } = require("xml2js");
 const fs = require("fs");
-const { platform } = require("os");
 
 const uwt = "";
 const path = "./series";
 
 const id = "";
+const idSerie = "";
 
 const numberFormat = new Intl.NumberFormat("fr-FR", {
   minimumIntegerDigits: 2,
@@ -18,7 +18,7 @@ const formatDate = (date) => date.slice(1, 11);
 const main = async (id) => {
   let episode = id;
   const rssText = await fetch(
-    "https://mgpk-cdn.magazinepocket.com/static/rss/1524/feed.xml"
+    `https://mgpk-cdn.magazinepocket.com/static/rss/${idSerie}/feed.xml`
   ).then((res) => res.text());
   const rss = await parseStringPromise(rssText);
   const mangaInfos = rss.rss.channel[0].item
